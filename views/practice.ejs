@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>
+            <%=title %>
+        </title>
+            <body>
+                <h1>Playing with EJS</h1>
+
+                <UL>
+                    <!-- using loop -->
+                    <li><h1>
+                        <% for (let i=1; i<=10; i++) { %>
+                            <%= i %>          
+                            <%}%>
+                        </h1>
+                    </li>
+                    <!-- using if,else statement -->
+                    <li>
+
+                        <% if (true){ %>
+                            <h1>It's true!</h1>          
+                          <% }else{ %>
+                            <p>It's false :(</p>
+                          <% } %>
+                    </li>
+
+                </UL>
+
+            </body>
+       
+    </head>
+</html>

@@ -9,11 +9,14 @@ app.set('views',path.join(__dirname,'views'));
 
 app.get('/', function(req,res){
 
-    return res.render('home');
+    return res.render('home',{title:"My Contacts List"});
 // res.send('<h1>cool, it is running</h1>');
 });
 
-
+app.get('/practice',function(req,res)
+{
+    return res.render('practice',{title:"Dynamic"});
+});
 
 
 app.listen(port, function(err){
