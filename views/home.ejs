@@ -3,7 +3,27 @@
         <title>
             <%= locals.title%>
         </title>
-    <body style="color: orange;"" background="black"> 
-       <h1><marquee> Rendered from EJS  View....</marquee></h1>
-    </body>
-</head></html>
+    </head>
+    <body style="color: green;"" background="black"> 
+       <h1>Contact List</h1>
+       <div>
+        <ul>
+            <% for (let i of contact_list)  { %>
+            <li>
+                <p> <%= i.name %></p>
+                <p> <%=i.phoneNo %> </p>
+
+            </li>
+            <% } %>
+        </ul>
+       </div>
+       <form action="/create-contact" method="post">
+       <label>Add Your Name:</label>
+       <input type="text" name="name" placeholder="Enter Your Name" required>
+       <label>Add your Phone.No.</label>
+       <input type="number"name="phoneNo" placeholder="Enter Phone NO." required>
+       <button type="submit">Add to Contact List </button>
+       </form>
+        </body>
+        
+</html>
