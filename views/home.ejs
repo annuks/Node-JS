@@ -1,29 +1,43 @@
 <html>
-    <head>
-        <title>
-            <%= locals.title%>
-        </title>
-    </head>
-    <body style="color: green;"" background="black"> 
-       <h1>Contact List</h1>
-       <div>
-        <ul>
-            <% for (let i of contact_list)  { %>
-            <li>
-                <p> <%= i.name %></p>
-                <p> <%=i.phoneNo %> </p>
-
-            </li>
-            <% } %>
-        </ul>
-       </div>
-       <form action="/create-contact" method="post">
-       <label>Add Your Name:</label>
-       <input type="text" name="name" placeholder="Enter Your Name" required>
-       <label>Add your Phone.No.</label>
-       <input type="number"name="phoneNo" placeholder="Enter Phone NO." required>
-       <button type="submit">Add to Contact List </button>
-       </form>
-        </body>
-        
+  <head>
+    <title><%= locals.title%></title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
+    <h1 id="heading">
+      <i class="fa-regular fa-address-book"></i>
+      My Contacts List</h1>
+    <div>
+      <ul>
+        <% for (let i of contact_list) { %>
+        <li>
+          <p><%= i.name %></p>
+          <p><%=i.phoneNo %></p>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+    <form action="/create-contact" method="post">
+      <label>Add Your Name:</label>
+      <input type="text" name="name" placeholder="Enter Your Name" required />
+      <label>Add your Phone.No.</label>
+      <input
+        type="number"
+        name="phoneNo"
+        placeholder="Enter Phone NO."
+        required
+      />
+      <button type="submit">Add to Contact List</button>
+    </form>
+    <script type="text/javascript" src="/js/home.js">
+  </script>
+  </body>
 </html>

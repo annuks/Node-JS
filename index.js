@@ -6,8 +6,20 @@ const { urlencoded } = require('express');
 const app= express();
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
-
 app.use(urlencoded());
+app.use(express.static('assets'));
+
+// //   creating Middleware
+// app.use(function (req,res,next){
+//    // console.log('middleware 1 called');
+//     next();
+// });
+
+
+// app.use(function (req,res,next){
+//    // console.log('middleware 2 called');
+//     next();
+// });
 
 var contactList=[
     {
@@ -27,6 +39,7 @@ var contactList=[
 
 
 app.get('/', function(req,res){
+    
 
     return res.render('home',{
         title:"Contacts List",
@@ -47,10 +60,10 @@ app.post('/create-contact',function(req,res){
     //     name : req.body.name,
     //     phoneNo : req.body.phoneNo
     // }
-
+    
     contactList.push(req.body);
     return res.redirect('/')
-});
+    });
 
 
 app.listen(port, function(err){
