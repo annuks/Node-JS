@@ -8,3 +8,45 @@ body{
     text-align: center;
     color: grey;
 }
+
+#contact-list-container ul{
+padding: 0px;
+list-style: none;
+
+
+
+}
+
+.contact{
+    padding: 3px,10px;
+    border: 1px,solid,white;
+    box-shadow: 1px,1px,1px,1px,lightgray;
+    background-color:lightblue;
+    color: white;
+    display: flex;
+}
+
+.contact .details{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.contact p{
+    margin: 5px 0;
+}
+#close-button{
+
+}
+
+.contact .delete-button{
+    text-align: center;
+    margin-top: 5px;
+
+}
+.contact .delete-button a{
+    color: white;
+    background-color:red
+    
+
+}

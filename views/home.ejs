@@ -15,27 +15,38 @@
     <h1 id="heading">
       <i class="fa-regular fa-address-book"></i>
       My Contacts List</h1>
-    <div>
+    <div id="contact-list-container">
       <ul>
         <% for (let i of contact_list) { %>
-        <li>
-          <p><%= i.name %></p>
-          <p><%=i.phoneNo %></p>
+        <li class="contact">
+          <div class="details">
+          <p><%= i.name %> <%=i.phoneNo %></p>
+        </div>
+          
+    <div class="delete-button">
+      <!-- <a href="/delete-contact/<%= i.phoneNo %>"> -->
+
+        <!-- using query method -->
+      <a href="/delete-contact/?phoneNo=<%= i.phoneNo %>">
+        <i id="close-button" class="fa-solid fa-square-xmark"></i>
+       </a> 
+      </div>
         </li>
         <% } %>
       </ul>
     </div>
-    <form action="/create-contact" method="post">
-      <label>Add Your Name:</label>
+
+    <form id="new-contact=form" action="/create-contact" method="post">
+      <label>Add Name:</label>
       <input type="text" name="name" placeholder="Enter Your Name" required />
-      <label>Add your Phone.No.</label>
+      <label>Add Phone.No.</label>
       <input
         type="number"
         name="phoneNo"
         placeholder="Enter Phone NO."
         required
       />
-      <button type="submit">Add to Contact List</button>
+      <button type="submit">Add </button>
     </form>
     <script type="text/javascript" src="/js/home.js">
   </script>

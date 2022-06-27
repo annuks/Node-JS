@@ -66,6 +66,26 @@ app.post('/create-contact',function(req,res){
     });
 
 
+app.get('/delete-contact',function(req,res){
+     console.log(req.query);
+    // let phoneNo=  req.params.phone;
+
+
+    // by query parameter
+    
+    let phoneNo=  req.query.phoneNo;
+
+    let contactIndex=contactList.findIndex(contact=>contact.phoneNo==phoneNo);
+    if(contactIndex != -1){
+        contactList.splice(contactIndex,1);
+
+
+    }
+    return res.redirect('back');
+
+
+});
+
 app.listen(port, function(err){
     if(err){
 
