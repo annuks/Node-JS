@@ -1,8 +1,13 @@
 const express=require ('express');
 const path= require('path');
 const port= 8000;
+const db=require('./config/mongoose');
+const Contact=require('./models/contact')
+
 const ejs= require('ejs');
 const { urlencoded } = require('express');
+const { create } = require('./models/contact');
+const e = require('express');
 const app= express();
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
@@ -21,29 +26,35 @@ app.use(express.static('assets'));
 //     next();
 // });
 
-var contactList=[
-    {
-        name:"Ramesh",
-        phoneNo:"24687568"
+// var contactList=[
+//     {
+//         name:"Ramesh",
+//         phoneNo:"24687568"
 
-    },
-    {
-        name:"Tony Stark",
-        phoneNo:"359347690347"
-    },
-    {
-        name:"Suresh",
-        phoneNo:"87347690347"
-    }
-]
+//     },
+//     {
+//         name:"Tony Stark",
+//         phoneNo:"359347690347"
+//     },
+//     {
+//         name:"Suresh",
+//         phoneNo:"87347690347"
+//     }
+// ]
 
 
 app.get('/', function(req,res){
     
-
-    return res.render('home',{
-        title:"Contacts List",
-        contact_list:contactList
+    Contact.find({}, function (err,contacts){
+        if(err){
+            console.log('Error in fetching from database');
+            return;
+        }
+    
+        return res.render('home',{
+            title:"Contacts List",
+            contact_list:contacts
+        });
     });
 });
 
@@ -61,35 +72,49 @@ app.post('/create-contact',function(req,res){
     //     phoneNo : req.body.phoneNo
     // }
     
-    contactList.push(req.body);
-    return res.redirect('/')
+    // contactList.push(req.body);
+
+    Contact.create ({
+        name:req.body.name,
+        phoneNo:req.body.phoneNo
+        
+
+    },  
+    function (err,newContact){
+        if(err){console.log('error in creating a contact');
+        return;}
+        console.log('******',newContact);
+    return res.redirect('back');
     });
+});
+
 
 
 app.get('/delete-contact',function(req,res){
-     console.log(req.query);
+     //console.log(req.query);
     // let phoneNo=  req.params.phone;
-
-
     // by query parameter
+
+    // get the id in query from url
+
     
-    let phoneNo=  req.query.phoneNo;
-
-    let contactIndex=contactList.findIndex(contact=>contact.phoneNo==phoneNo);
-    if(contactIndex != -1){
-        contactList.splice(contactIndex,1);
-
-
-    }
-    return res.redirect('back');
+    let id=  req.query.id;
+//find the contact in the database using id and delete
+     Contact.findByIdAndDelete(id,function(err){
+        if(err){
+            console.log('Error in deleting data from database');
+            return;
+        }
+        return res.redirect('back');
+     });
+    
 
 
 });
 
 app.listen(port, function(err){
     if(err){
-
-
-    console.log('Error in running the server',err);}
-    console.log('Express Server is Running on Port:',port)
-});
+    console.log('Error in running the server',err);
+    }
+    console.log('Express Server is Running on Port:',port);
+})

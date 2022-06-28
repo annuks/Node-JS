@@ -11,7 +11,13 @@ body{
 
 #contact-list-container ul{
 padding: 0px;
+width: 400px;
+height: auto;
 list-style: none;
+align-items: stretch;
+display: flex;
+flex-direction: column;
+align-self: center;
 
 
 
